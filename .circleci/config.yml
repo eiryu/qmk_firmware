@@ -1,0 +1,36 @@
+defaults: &defaults
+  working_directory: ~/qmk
+
+version: 2
+jobs:
+  build:
+    <<: *defaults
+    docker:
+      - image: edasque/qmk_firmware
+    steps:
+      - checkout
+      - run:
+          name: "Workaround `x509: failed to load system roots and no roots provided`"
+          command: |
+            echo "deb http://security.debian.org/debian-security jessie/updates main" >> /etc/apt/sources.list
+            apt-get update
+            apt-get install -y ca-certificates
+      - run:
+          name: Build keymap
+          command: |
+            mkdir /tmp/artifacts
+            if [ -n "$QMK_KEYBOARD" ] && [ -n "$QMK_KEYMAP" ]; then
+              echo 'building keymap...'
+              make git-submodule
+              make clean && make "$QMK_KEYBOARD":"$QMK_KEYMAP"
+              cp .build/*.hex /tmp/artifacts
+            fi
+      - store_artifacts:
+          path: /tmp/artifacts
+          destination: artifacts
+
+workflows:
+  version: 2
+  main:
+    jobs:
+      - build
