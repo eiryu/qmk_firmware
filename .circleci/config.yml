@@ -19,8 +19,11 @@ jobs:
           name: Build keymap
           command: |
             mkdir /tmp/artifacts
-            make clean && make planck/rev4:eiryu
-            cp planck_rev4_eiryu.hex /tmp/artifacts
+            if [ -n "$QMK_KEYBOARD" ] && [ -n "$QMK_KEYMAP" ]; then
+              make git-submodule
+              make clean && make "$QMK_KEYBOARD":"$QMK_KEYMAP"
+              cp .build/*.hex /tmp/artifacts
+            fi
       - store_artifacts:
           path: /tmp/artifacts
 
