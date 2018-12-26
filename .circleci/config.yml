@@ -6,7 +6,7 @@ jobs:
   build:
     <<: *defaults
     docker:
-      - image: edasque/qmk_firmware
+      - image: qmkfm/qmk_firmware
     steps:
       - checkout
       - run:
