@@ -1,5 +1,5 @@
 defaults: &defaults
-  working_directory: ~/qmk
+  working_directory: /qmk_firmware
 
 version: 2
 jobs:
