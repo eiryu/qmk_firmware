@@ -18,8 +18,9 @@ jobs:
       - run:
           name: Build keymap
           command: |
-            mkdir /tmp/artifacts
             if [ -n "$QMK_KEYBOARD" ] && [ -n "$QMK_KEYMAP" ]; then
+              mkdir /tmp/artifacts
+
               echo 'building keymap...'
               make git-submodule
               make clean && make "$QMK_KEYBOARD":"$QMK_KEYMAP"
