@@ -8,6 +8,9 @@ jobs:
     docker:
       - image: qmkfm/qmk_firmware
     steps:
+      - run:
+          name: "install git"
+          command: apt-get install -y git
       - checkout
       - run:
           name: "Workaround `x509: failed to load system roots and no roots provided`"
