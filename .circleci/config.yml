@@ -19,6 +19,7 @@ jobs:
           name: Build keymap
           command: |
             mkdir /tmp/artifacts
+            make git-submodule
             make clean && make planck/rev4:eiryu
             cp planck_rev4_eiryu.hex /tmp/artifacts
       - store_artifacts:
