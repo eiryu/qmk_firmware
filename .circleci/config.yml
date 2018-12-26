@@ -6,7 +6,7 @@ jobs:
   build:
     <<: *defaults
     docker:
-      - image: edasque/qmk_firmware
+      - image: qmkfm/qmk_firmware
     steps:
       - checkout
       - run:
@@ -21,7 +21,7 @@ jobs:
             mkdir /tmp/artifacts
             if [ -n "$QMK_KEYBOARD" ] && [ -n "$QMK_KEYMAP" ]; then
               echo 'building keymap...'
-              # make git-submodule
+              make git-submodule
               make clean && make "$QMK_KEYBOARD":"$QMK_KEYMAP"
               cp .build/*.hex /tmp/artifacts
             fi
