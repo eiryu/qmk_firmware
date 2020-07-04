@@ -1,0 +1,19 @@
+name: 自分用keymapビルド
+on: [push]
+
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    container: qmkfm/base_container
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Build keymap
+      run:  make planck/rev4:eiryu
+
+    - name: Archive hex
+      uses: actions/upload-artifact@v1
+      with:
+        name: planck_rev4_eiryu.hex
+        path: .build/planck_rev4_eiryu.hex
