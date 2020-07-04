@@ -1,0 +1,14 @@
+// #define MOUSEKEY_DELAY             300
+// #define MOUSEKEY_INTERVAL          50
+// #define MOUSEKEY_MAX_SPEED         10
+// #define MOUSEKEY_TIME_TO_MAX       20
+// #define MOUSEKEY_WHEEL_MAX_SPEED   8
+// #define MOUSEKEY_WHEEL_TIME_TO_MAX 40
+
+// #undef  BACKLIGHT_LEVELS
+// #define BACKLIGHT_LEVELS 5
+#define BACKLIGHT_BREATHING
+// #define BREATHING_PERIOD 6
+
+#define PERMISSIVE_HOLD
+#define RETRO_TAPPING
